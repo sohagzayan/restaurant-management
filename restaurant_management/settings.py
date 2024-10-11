@@ -20,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-a_#^*(6!nbi(=p73m7h69sk*0wli9g--+4d5q-)6lbd&mi$90c'
+SECRET_KEY = 'django-insecure-*&m3mc(m(hff(1c_4640pp%11=y-*)^534b7w57obt@vb$3!1l'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -37,7 +37,18 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    "rest_framework",
+    'accounts',
+    "restaurant",
 ]
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+}
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -49,7 +60,10 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'restaurant.urls'
+ROOT_URLCONF = 'restaurant_management.urls'
+
+AUTH_USER_MODEL = 'accounts.User'
+
 
 TEMPLATES = [
     {
@@ -67,7 +81,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'restaurant.wsgi.application'
+WSGI_APPLICATION = 'restaurant_management.wsgi.application'
 
 
 # Database
@@ -75,15 +89,14 @@ WSGI_APPLICATION = 'restaurant.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'restaurant',     
-        'USER': 'postgres',          
-        'PASSWORD': 'mypass',         
-        'HOST': 'localhost',       
-        'PORT': '5432',            
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'restaurant', 
+        'USER': 'postgres',
+        'PASSWORD': 'mypass',
+        'HOST': 'localhost', 
+        'PORT': '5432',
     }
 }
-
 
 
 # Password validation

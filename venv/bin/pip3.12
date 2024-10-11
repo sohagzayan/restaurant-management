@@ -1,5 +1,5 @@
 #!/bin/sh
-'''exec' "/home/sohag/my folder/backend world/django jurnay/assignment/restaurant-management/venv/bin/python3" "$0" "$@"
+'''exec' "/home/sohag/my folder/backend world/django jurnay/assignment/restaurant-managementss/venv/bin/python3" "$0" "$@"
 ' '''
 # -*- coding: utf-8 -*-
 import re
