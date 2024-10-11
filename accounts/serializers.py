@@ -1,6 +1,9 @@
 from rest_framework import serializers
 from .models import Post
 from .models import User
+from rest_framework.exceptions import ValidationError
+from django.contrib.auth.password_validation import validate_password
+
 
 class PostSerializer(serializers.ModelSerializer):
     class Meta:
@@ -21,3 +24,14 @@ class UserSerializer(serializers.ModelSerializer):
             user.set_password(password)
         user.save()
         return user
+    
+
+class ChangePasswordSerializer(serializers.Serializer):
+    old_password = serializers.CharField(required=True)
+    new_password = serializers.CharField(required=True, validators=[validate_password])
+    confirm_new_password = serializers.CharField(required=True)
+
+    def validate(self, attrs):
+        if attrs['new_password'] != attrs['confirm_new_password']:
+            raise ValidationError({"confirm_new_password": "New password fields didn't match."})
+        return attrs
