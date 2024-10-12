@@ -20,8 +20,9 @@ JWT_SECRET_KEY = os.getenv('JWT_SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG', 'False') == 'True'
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['.vercel.app', '*']
 
+BASE_URL = os.getenv('BASE_URL', 'http://localhost:8000')  # Set default URL if env var is not present
 
 # Application definition
 
@@ -73,7 +74,7 @@ SIMPLE_JWT = {
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'restaurant_management' / 'template'],  # Update this to the correct path
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

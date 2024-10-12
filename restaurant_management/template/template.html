@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Management API</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            color: #666;
+            font-size: 18px;
+            line-height: 1.5;
+        }
+
+        .endpoint-list {
+            margin-top: 20px;
+        }
+
+        .endpoint-list ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .endpoint-list li {
+            background-color: #f8f8f8;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+
+        .endpoint-list li a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .endpoint-list li a:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            margin-top: 20px;
+            color: #aaa;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to the Restaurant Management API</h1>
+        <p>This API allows you to manage restaurants, their locations, and menus, along with custom user authentication. Follow the routes below to explore the available functionality.</p>
+        
+        <div class="endpoint-list">
+            <h2>Available API Endpoints</h2>
+            <ul>
+                <!-- Authentication Endpoints -->
+                <li><a href="{{ base_url }}/api/auth/register/">POST /api/auth/register/ - Register a new user</a></li>
+                <li><a href="{{ base_url }}/api/auth/userlist/">GET /api/auth/userlist/ - Get all user list</a></li>
+                <li><a href="{{ base_url }}/api/auth/login/">POST /api/auth/login/ - User login</a></li>
+                <li><a href="{{ base_url }}/api/auth/change_password/">PUT /api/auth/change_password/ - Change user password</a></li>
+                <li><a href="{{ base_url }}/api/auth/logout/">POST /api/auth/logout/ - Logout user</a></li>
+
+                <!-- Restaurant Endpoints -->
+                <li><a href="{{ base_url }}/api/restaurants-create/">POST /api/restaurants-create/ - Create new restaurant</a></li>
+                <li><a href="{{ base_url }}/api/restaurants-list/">GET /api/restaurants-list/ - Get all restaurants</a></li>
+
+                <!-- Location Endpoints -->
+                <li><a href="{{ base_url }}/api/restaurants/1/locations-create/">POST /api/restaurants/1/locations-create/ - Create location</a></li>
+
+                <!-- Menu Endpoints -->
+                <li><a href="{{ base_url }}/api/locations/1/menus-create/">POST /api/locations/1/menus-create/ - Create menu</a></li>
+                <li><a href="{{ base_url }}/api/locations/1/menus-list/">GET /api/locations/1/menus-list/ - Get menu list</a></li>
+
+                <!-- Category Endpoints -->
+                <li><a href="{{ base_url }}/api/menus/1/categories-create/">POST /api/menus/1/categories-create/ - Create category</a></li>
+                <li><a href="{{ base_url }}/api/menus/1/categories-list/">GET /api/menus/1/categories-list/ - Get category list</a></li>
+
+                <!-- Item Endpoints -->
+                <li><a href="{{ base_url }}/api/categories/1/items-create/">POST /api/categories/1/items-create/ - Create item</a></li>
+                <li><a href="{{ base_url }}/api/categories/1/items-list/">GET /api/categories/1/items-list/ - Get item list</a></li>
+            </ul>
+        </div>
+        
+        <footer>
+            <p>&copy; 2024 Restaurant Management API | Built with Django & PostgreSQL</p>
+        </footer>
+    </div>
+</body>
+</html>
