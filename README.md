@@ -4,35 +4,13 @@
 
 This repository contains the backend API for managing restaurant operations. It includes features like user authentication, restaurant location management, menu creation, and more.
 
-## Roadmap
-
-### Phase 1: User Management
-
-- Custom user model using Django's `AbstractBaseUser`.
-- JWT-based authentication for login and registration.
-
-### Phase 2: Restaurant and Menu Management
-
-- Manage multiple restaurant locations.
-- Menu creation and management for each restaurant.
-
-### Phase 3: Orders and Payments (Future)
-
-- Integration with payment gateways.
-- Order tracking and real-time updates.
-
-### Phase 4: Reviews and Ratings
-
-- Users can submit reviews and ratings.
-- Nested comments, likes, and dislikes functionality.
-
 ## How to Use This Repository
 
 1. **Clone the Repository**
 
    ```bash
-   git clone https://github.com/your-repo/restaurant-management-api.git
-   cd restaurant-management-api
+   git clone https://github.com/sohagzayan/restaurant-management.git
+   cd restaurant-management
    ```
 
 2. **Set Up the Environment**
@@ -59,172 +37,88 @@ This repository contains the backend API for managing restaurant operations. It 
 
 ## API Endpoints
 
-### 1. **User Authentication**
+**Register New user (POST)**
 
-- **Endpoint**: `/api/auth/register/`
-- **Method**: POST
-- **Description**: Registers a new user in the system.
-- **Payload**:
-  ```json
-  {
-    "email": "user@example.com",
-    "password": "yourpassword",
-    "name": "User Name"
-  }
-  ```
-- **Response**:
+```bash
+  /api/auth/register/
+```
 
-  ```json
-  {
-    "message": "User registered successfully.",
-    "token": "JWT token"
-  }
-  ```
+**Get all user list (GET)**
 
-- **Endpoint**: `/api/auth/login/`
-- **Method**: POST
-- **Description**: Logs in an existing user.
-- **Payload**:
-  ```json
-  {
-    "email": "user@example.com",
-    "password": "yourpassword"
-  }
-  ```
-- **Response**:
-  ```json
-  {
-    "token": "JWT token"
-  }
-  ```
+```bash
+  /api/auth/userlist/
+```
 
-### 2. **Restaurant Management**
+**User login (POST)**
 
-- **Endpoint**: `/api/restaurant/`
-- **Method**: GET
-- **Description**: Retrieves a list of all restaurants with optional query parameters for filtering (e.g., by location or status).
-- **Query Parameters**:
-  - `lat`: Latitude of the location.
-  - `lng`: Longitude of the location.
-  - `verified`: Boolean, filter by verified status.
-- **Response**:
+```bash
+  /api/auth/login/
+```
 
-  ```json
-  [
-    {
-      "id": 1,
-      "name": "Restaurant Name",
-      "location": "123 Main St",
-      "lat": 23.7624072,
-      "lng": 90.3388028,
-      "verified": true
-    }
-  ]
-  ```
+**Change user password with old password (PUT)**
 
-- **Endpoint**: `/api/restaurant/create/`
-- **Method**: POST
-- **Description**: Creates a new restaurant entry.
-- **Payload**:
-  ```json
-  {
-    "name": "New Restaurant",
-    "location": "123 New St",
-    "lat": 23.7624072,
-    "lng": 90.3388028,
-    "verified": true
-  }
-  ```
-- **Response**:
-  ```json
-  {
-    "message": "Restaurant created successfully.",
-    "restaurant": {
-      "id": 1,
-      "name": "New Restaurant",
-      "location": "123 New St",
-      "lat": 23.7624072,
-      "lng": 90.3388028,
-      "verified": true
-    }
-  }
-  ```
+```bash
+  /api/auth/change_password/
+```
 
-### 3. **Menu Management**
+**Logout user with invalid refresh token (POST)**
 
-- **Endpoint**: `/api/menu/`
-- **Method**: GET
-- **Description**: Retrieves the menu for a given restaurant.
-- **Query Parameters**:
-  - `restaurant_id`: ID of the restaurant.
-- **Response**:
+```bash
+  /api/auth/logout/
+```
 
-  ```json
-  [
-    {
-      "id": 1,
-      "name": "Dish Name",
-      "price": 12.99,
-      "description": "Delicious dish."
-    }
-  ]
-  ```
+## Restaurant
 
-- **Endpoint**: `/api/menu/create/`
-- **Method**: POST
-- **Description**: Adds a new menu item for a restaurant.
-- **Payload**:
-  ```json
-  {
-    "restaurant_id": 1,
-    "name": "New Dish",
-    "price": 15.99,
-    "description": "Tasty new dish."
-  }
-  ```
-- **Response**:
-  ```json
-  {
-    "message": "Menu item created successfully.",
-    "menu_item": {
-      "id": 1,
-      "name": "New Dish",
-      "price": 15.99,
-      "description": "Tasty new dish."
-    }
-  }
-  ```
+**Create new restaurant (POST)**
 
-### 4. **Review and Rating Management**
+```bash
+  /api/restaurants-create/
+```
 
-- **Endpoint**: `/api/review/`
-- **Method**: POST
-- **Description**: Submit a review for a restaurant.
-- **Payload**:
-  ```json
-  {
-    "restaurant_id": 1,
-    "review": "Great food!",
-    "rating": 5
-  }
-  ```
-- **Response**:
-  ```json
-  {
-    "message": "Review submitted successfully.",
-    "review": {
-      "id": 1,
-      "restaurant_id": 1,
-      "review": "Great food!",
-      "rating": 5,
-      "likes": 0,
-      "dislikes": 0
-    }
-  }
-  ```
+**Get all restaurant (GET)**
 
-## Future Enhancements
+```bash
+  /api/restaurants-list/
+```
 
-- Order Management
-- Payment Gateway Integration
-- Advanced Review and Comment Systems
+**Create location (POST)**
+
+```bash
+  /api/restaurants/1/locations-create/
+```
+
+**Create menu (POST)**
+
+```bash
+  /api/locations/1/menus-create/
+```
+
+**Get menu list (GET)**
+
+```bash
+/api/locations/1/menus-list/
+```
+
+**Create categories (POST)**
+
+```bash
+  /api/menus/1/categories-create/
+```
+
+**Get categories list (GET)**
+
+```bash
+  /api/menus/1/categories-list/
+```
+
+**Create item (POST)**
+
+```bash
+  /api/categories/1/items-create/
+```
+
+**Get item list (GET)**
+
+```bash
+ /api/categories/1/items-list/
+```
